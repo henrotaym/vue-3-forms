@@ -29,6 +29,8 @@
     "postversion": "git push && git push --tags && npm publish"
   },
   "dependencies": {
+    "@henrotaym/helpers": "^1.2.0",
+    "joi": "^17.9.1",
     "vue": "^3.2.47"
   },
   "devDependencies": {

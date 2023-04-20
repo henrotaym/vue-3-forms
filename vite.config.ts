@@ -22,7 +22,7 @@ export default ({ mode }) => {
         formats: ["es", "cjs"],
       },
       rollupOptions: {
-        external: ["vue"],
+        external: ["vue", "joi"],
         output: {
           globals: {
             vue: "Vue",
@@ -33,7 +33,7 @@ export default ({ mode }) => {
     },
     server: {
       host: true,
-      port: parseInt(process.env.VITE_PORT), // This is the port which we will use in docker
+      port: parseInt(process.env.VITE_PORT),
     },
   });
 };
