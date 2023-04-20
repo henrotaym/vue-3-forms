@@ -10,13 +10,14 @@ defineProps<{ form: Reactive<Form> }>();
     <slot />
 
     <button
-      class="px-4 py-2 border-gray-100 rounded-md shadow"
+      class="px-4 py-3 border-gray-100 rounded-md shadow transition"
       :class="{
-        'cursor-not-allowed text-gray-600 bg-gray-300': !form.isActive,
-        'text-white bg-blue-500': form.isActive,
+        'cursor-default text-slate-500 bg-slate-200': !form.isActive,
+        'text-white  bg-blue-500 hover:bg-blue-600': form.isActive,
       }"
     >
-      {{ form.isLoading ? "loading" : "envoyer" }}
+      <span v-if="form.isLoading" class="block animate-bounce">...</span>
+      <span v-else>Envoyer</span>
     </button>
   </form>
 </template>

@@ -1,4 +1,5 @@
-import { Field, Form, useForm } from "../lib";
+import { useFakeFetch } from ".";
+import { Field, Form, useReactiveForm } from "../lib";
 import Joi from "joi";
 
 const useExampleForm = () => {
@@ -19,7 +20,15 @@ const useExampleForm = () => {
     description,
   });
 
-  const reactiveForm = useForm(form);
+  const reactive = useReactiveForm(form);
+
+  reactive.onSubmit(async () => {
+    console.log(reactive.dirtyFields);
+    await useFakeFetch("success", 2000);
+    reactive.clear();
+  });
+
+  const reactiveForm = useReactiveForm(form);
 
   reactiveForm.onSubmit(async () => {
     await new Promise((resolve) =>

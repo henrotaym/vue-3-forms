@@ -77,7 +77,7 @@ class Container<F extends Record<string, Field> = any> {
 
   public get isActive() {
     if (this.isLoading) return false;
-    if (this.isValid) return true;
+    if (this.isValid && this.isDirty) return true;
     if (this.areFieldsValidated) return false;
 
     return this.isDirty;
