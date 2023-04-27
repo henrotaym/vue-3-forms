@@ -1,4 +1,4 @@
-const fakeFetch = <R>(resolved: R, delay: number) =>
-  new Promise<R>((resolve) => setTimeout(() => resolve(resolved), delay));
+const delay = (delay: number) =>
+  new Promise<void>((resolve) => setTimeout(() => resolve(), delay));
 
-export default fakeFetch;
+export default delay;
