@@ -1,6 +1,6 @@
 {
   "name": "@henrotaym/vue-3-forms",
-  "description": "Boilerplate to start a vue 3 package easily.",
+  "description": "Creating reactive forms easily",
   "private": false,
   "license": "MIT",
   "version": "0.0.1",
