@@ -33,11 +33,8 @@ const useExampleForm = () => {
     description,
   });
 
-  // Defining form submit callback
-  form.onSubmit(async () => {
-    console.log(Object.keys(form.dirtyFields));
-    await delay(3000);
-    form.clear();
+  form.onSubmit(() => {
+    // Your callback goes here ...
   });
 
   return form;
@@ -46,7 +43,7 @@ const useExampleForm = () => {
 export default useExampleForm;
 ```
 
-### Form
+### Form component
 ```vue
 <script setup lang="ts">
 import { useExampleForm } from "~/composables/forms";
