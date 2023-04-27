@@ -8,8 +8,8 @@ yarn add @henrotaym/vue-3-forms
 ## Usage
 ### Composable
 ```typescript
-import { Field, useForm } from "@henrotaym/vue-3-forms../lib";
 import Joi from "joi";
+import { Field, useForm } from "@henrotaym/vue-3-forms";
 
 const useExampleForm = () => {
 
