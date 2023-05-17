@@ -8,33 +8,45 @@ yarn add @henrotaym/vue-3-forms
 ## Usage
 ### Composable
 ```typescript
+import { Field, useReactiveForm } from "../lib";
 import Joi from "joi";
-import { Field, useForm } from "@henrotaym/vue-3-forms";
 
 const useExampleForm = () => {
-
-  // Creating title field.
   const title = new Field({
     label: "title",
     value: "this is my title",
     validation: Joi.string().required(),
   });
 
-  // Creating description field.
   const description = new Field({
     label: "description",
     value: "this is my description",
     validation: Joi.string().required(),
   });
 
-  // Creating form instance
-  const form = useForm({
-    title,
-    description,
+  const ratings = new Field({
+    label: "ratings",
+    value: 0,
+    validation: Joi.number().required(),
   });
 
-  form.onSubmit(() => {
-    // Your callback goes here ...
+  const isUsing = new Field({
+    label: "isUsing",
+    value: true,
+    validation: Joi.boolean().required(),
+  });
+
+  const form = useReactiveForm({
+    ratings,
+    title,
+    description,
+    isUsing,
+  });
+
+  form.onSubmit(async () => {
+    // Executed only if form is valid and not already loading
+    console.log(Object.keys(form.dirtyFields));
+    form.clear();
   });
 
   return form;
@@ -46,16 +58,18 @@ export default useExampleForm;
 ### Form component
 ```vue
 <script setup lang="ts">
-import { useExampleForm } from "~/composables/forms";
+import { useExampleForm } from "../composables";
 import { FormContainer, FormField } from "@henrotaym/vue-3-forms";
 
 const form = useExampleForm();
 </script>
 
 <template>
-  <FormContainer :form="form">
+  <FormContainer :form="form" class="w-[500px]">
     <FormField :form-field="form.fields.title"></FormField>
     <FormField :form-field="form.fields.description"></FormField>
+    <FormField :form-field="form.fields.isUsing"></FormField>
+    <FormField :form-field="form.fields.ratings"></FormField>
   </FormContainer>
 </template>
 ```

@@ -1,5 +1,5 @@
 import { delay } from ".";
-import { Field, useForm } from "../lib";
+import { Field, useReactiveForm } from "../lib";
 import Joi from "joi";
 
 const useExampleForm = () => {
@@ -15,9 +15,23 @@ const useExampleForm = () => {
     validation: Joi.string().required(),
   });
 
-  const form = useForm({
+  const ratings = new Field({
+    label: "ratings",
+    value: 0,
+    validation: Joi.number().required(),
+  });
+
+  const isUsing = new Field({
+    label: "isUsing",
+    value: true,
+    validation: Joi.boolean().required(),
+  });
+
+  const form = useReactiveForm({
+    ratings,
     title,
     description,
+    isUsing,
   });
 
   form.onSubmit(async () => {

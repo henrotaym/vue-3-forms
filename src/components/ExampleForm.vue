@@ -9,5 +9,7 @@ const form = useExampleForm();
   <FormContainer :form="form" class="w-[500px]">
     <FormField :form-field="form.fields.title"></FormField>
     <FormField :form-field="form.fields.description"></FormField>
+    <FormField :form-field="form.fields.isUsing"></FormField>
+    <FormField :form-field="form.fields.ratings"></FormField>
   </FormContainer>
 </template>

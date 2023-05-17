@@ -1,8 +1,8 @@
 import { Loader } from "@henrotaym/helpers";
-import Field from "./field";
+import { Fields } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-class Container<F extends Record<string, Field> = any> {
+class Container<F extends Fields = any> {
   private _fields;
   private _loader;
   private _onSubmit?: (form: this) => Promise<void>;

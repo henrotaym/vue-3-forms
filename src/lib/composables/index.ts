@@ -1,1 +1,1 @@
-export { default as useForm } from "./useReactiveForm";
+export { default as useReactiveForm } from "./useReactiveForm";
