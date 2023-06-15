@@ -6,13 +6,13 @@ const useExampleForm = () => {
   const title = new Field({
     label: "title",
     value: "this is my title",
-    validation: z.string(),
+    validation: z.string().nonempty(),
   });
 
   const description = new Field({
     label: "description",
     value: "this is my description",
-    validation: z.string(),
+    validation: z.string().nonempty(),
   });
 
   const ratings = new Field({

@@ -1,13 +1,13 @@
 import { ZodType } from "zod";
 
-class Validator<V, TZodValidator extends ZodType> {
+class Validator<TValue, TZodValidator extends ZodType> {
   private _value;
   private _error?: string;
   private _rule;
   private _isValidated;
   private _isDirty;
 
-  constructor(value: V, rule: TZodValidator) {
+  constructor(value: TValue, rule: TZodValidator) {
     this._value = value;
     this._rule = rule;
     this._isValidated = false;
@@ -22,7 +22,7 @@ class Validator<V, TZodValidator extends ZodType> {
     return this._value;
   }
 
-  public setValue(value: V) {
+  public setValue(value: TValue) {
     this._value = value;
     this._isDirty = true;
   }
@@ -44,7 +44,7 @@ class Validator<V, TZodValidator extends ZodType> {
     const parsed = this._rule.safeParse(this._value);
     if (parsed.success) return;
 
-    this._error = parsed.error.message;
+    this._error = parsed.error.errors[0].message;
   }
 
   public reset() {

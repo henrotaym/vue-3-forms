@@ -2,12 +2,12 @@ import { Loader } from "@henrotaym/helpers";
 import { Fields } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-class Container<F extends Fields = any> {
+class Container<TFields extends Fields = any> {
   private _fields;
   private _loader;
   private _onSubmit?: (form: this) => Promise<void>;
 
-  constructor(fields: F) {
+  constructor(fields: TFields) {
     this._fields = fields;
     this._loader = new Loader(false);
   }
@@ -18,7 +18,7 @@ class Container<F extends Fields = any> {
 
   public get dirtyFields() {
     return Object.keys(this._fields).reduce(
-      (dirtyFields: Partial<F>, key: keyof F) => {
+      (dirtyFields: Partial<TFields>, key: keyof TFields) => {
         const field = this._fields[key];
         if (!field.isDirty) return dirtyFields;
         dirtyFields[key] = field;

@@ -1,7 +1,7 @@
 import Validator from "./validator";
 import { ZodType } from "zod";
 
-class Field<V = unknown, TZodValidator extends ZodType = ZodType> {
+class Field<TValue = unknown, TZodValidator extends ZodType = ZodType> {
   private _label;
   private _validator;
   constructor({
@@ -10,7 +10,7 @@ class Field<V = unknown, TZodValidator extends ZodType = ZodType> {
     validation,
   }: {
     label: string;
-    value: V;
+    value: TValue;
     validation: TZodValidator;
   }) {
     this._label = label;
@@ -25,11 +25,11 @@ class Field<V = unknown, TZodValidator extends ZodType = ZodType> {
     return this._validator.value;
   }
 
-  public set value(value: V) {
+  public set value(value: TValue) {
     this._validator.setValue(value);
   }
 
-  public setValue(value: V) {
+  public setValue(value: TValue) {
     this._validator.setValue(value);
     return this;
   }
