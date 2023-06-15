@@ -1,7 +1,7 @@
-import { AnySchema } from "joi";
 import Validator from "./validator";
+import { ZodType } from "zod";
 
-class Field<V = unknown> {
+class Field<V = unknown, TZodValidator extends ZodType = ZodType> {
   private _label;
   private _validator;
   constructor({
@@ -11,7 +11,7 @@ class Field<V = unknown> {
   }: {
     label: string;
     value: V;
-    validation: AnySchema<V>;
+    validation: TZodValidator;
   }) {
     this._label = label;
     this._validator = new Validator(value, validation);

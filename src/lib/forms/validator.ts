@@ -1,13 +1,13 @@
-import { AnySchema } from "joi";
+import { ZodType } from "zod";
 
-class Validator<V> {
+class Validator<V, TZodValidator extends ZodType> {
   private _value;
   private _error?: string;
   private _rule;
   private _isValidated;
   private _isDirty;
 
-  constructor(value: V, rule: AnySchema<V>) {
+  constructor(value: V, rule: TZodValidator) {
     this._value = value;
     this._rule = rule;
     this._isValidated = false;
@@ -41,11 +41,10 @@ class Validator<V> {
 
   public validate() {
     this._isValidated = true;
-    const { error } = this._rule.validate(this._value);
+    const parsed = this._rule.safeParse(this._value);
+    if (parsed.success) return;
 
-    if (!error) return;
-
-    this._error = error.message;
+    this._error = parsed.error.message;
   }
 
   public reset() {

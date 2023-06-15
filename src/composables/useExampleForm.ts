@@ -1,30 +1,30 @@
+import { z } from "zod";
 import { delay } from ".";
 import { Field, useReactiveForm } from "../lib";
-import Joi from "joi";
 
 const useExampleForm = () => {
   const title = new Field({
     label: "title",
     value: "this is my title",
-    validation: Joi.string().required(),
+    validation: z.string(),
   });
 
   const description = new Field({
     label: "description",
     value: "this is my description",
-    validation: Joi.string().required(),
+    validation: z.string(),
   });
 
   const ratings = new Field({
     label: "ratings",
     value: 0,
-    validation: Joi.number().required(),
+    validation: z.number(),
   });
 
   const isUsing = new Field({
     label: "isUsing",
     value: true,
-    validation: Joi.boolean().required(),
+    validation: z.boolean(),
   });
 
   const form = useReactiveForm({
